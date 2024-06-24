@@ -14,17 +14,11 @@ spec:
   extraEnv: {}
   extraEnvFrom: {}
   extraObjects: []
-  hostAliases:
-  - ip: "192.168.1.154"
-    hostnames:
-    - "gitlab.test.local"
+  hostAliases: []
   image:
     image: gitlab-org/gitlab-runner
     registry: registry.gitlab.com
   imagePullPolicy: IfNotPresent
-  gitlabUrl: "https://gitlab.test.local"
-  runnerRegistrationToken: "glrt-uy7J39q5DLuR_Xzcgzjm"
-  unregisterRunners: true
   metrics:
     enabled: false
     port: 9252
@@ -53,42 +47,10 @@ spec:
   runners:
     cache: {}
     config: |
-      [session_server]
-        session_timeout = 1800
       [[runners]]
-        name = "gitlab-runner-test"
-        url = "https://gitlab.com"
-        id = 38659274
-        token = "glrt-dE28onWfj5m2MdRMypPg"
-        executor = "kubernetes"
-        [runners.custom_build_dir]
-        [runners.cache]
-          MaxUploadedArchiveSize = 0
-          [runners.cache.s3]
-          [runners.cache.gcs]
-          [runners.cache.azure]
         [runners.kubernetes]
-          host = ""
-          bearer_token_overwrite_allowed = false
-          image = ""
-          namespace = ""
-          namespace_overwrite_allowed = ""
-          namespace_per_job = false
-          node_selector_overwrite_allowed = ""
-          node_tolerations_overwrite_allowed = ""
-          pod_labels_overwrite_allowed = ""
-          service_account_overwrite_allowed = ""
-          pod_annotations_overwrite_allowed = ""
-          [runners.kubernetes.init_permissions_container_security_context]
-            [runners.kubernetes.init_permissions_container_security_context.capabilities]
-          [runners.kubernetes.build_container_security_context]
-            [runners.kubernetes.build_container_security_context.capabilities]
-          [runners.kubernetes.helper_container_security_context]
-            [runners.kubernetes.helper_container_security_context.capabilities]
-          [runners.kubernetes.service_container_security_context]
-            [runners.kubernetes.service_container_security_context.capabilities]
-          [runners.kubernetes.volumes]
-          [runners.kubernetes.dns_config]
+          namespace = "{{.Release.Namespace}}"
+          image = "alpine"
     configPath: ""
   secrets: []
   securityContext:
@@ -114,13 +76,7 @@ spec:
   tolerations: []
   topologySpreadConstraints: {}
   useTini: false
-  volumeMounts:
-          - mountPath: "/etc/ssl/certs/"
-            name: gitlab-cert
-            readOnly: true
+  volumeMounts: []
   volumes: []
-  volumes:
-        - name: gitlab-cert
-          secret:
-            secretName: gitlab-cert
+  
   

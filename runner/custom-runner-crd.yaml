@@ -22,8 +22,8 @@ spec:
     image: gitlab-org/gitlab-runner
     registry: registry.gitlab.com
   imagePullPolicy: IfNotPresent
-  gitlabUrl: "https://gitlab.com"
-  runnerRegistrationToken: "glrt-dE28onWfj5m2MdRMypPg"
+  gitlabUrl: "https://gitlab.test.local"
+  runnerRegistrationToken: "glrt-uy7J39q5DLuR_Xzcgzjm"
   unregisterRunners: true
   metrics:
     enabled: false
@@ -51,15 +51,10 @@ spec:
     serviceAccountAnnotations: {}
   resources: {}
   runners:
-    variables:
-      GIT_SSL_NO_VERIFY: "1"
     cache: {}
-    script:
-      - update-ca-certificates
     config: |
       [session_server]
         session_timeout = 1800
-
       [[runners]]
         name = "gitlab-runner-test"
         url = "https://gitlab.com"
@@ -120,12 +115,12 @@ spec:
   topologySpreadConstraints: {}
   useTini: false
   volumeMounts:
-          - mountPath: "/usr/local/share/ca-certificates/"
-            name: webhook-server-cert
+          - mountPath: "/etc/ssl/certs/"
+            name: gitlab-cert
             readOnly: true
   volumes: []
   volumes:
-        - name: webhook-server-cert
+        - name: gitlab-cert
           secret:
-            secretName: webhook-server-cert
+            secretName: gitlab-cert
   
