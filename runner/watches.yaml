@@ -1,0 +1,6 @@
+# Use the 'create api' subcommand to add watches to this file.
+- group: apps.gitlab.com
+  version: v1beta2
+  kind: Runner
+  chart: helm-charts/gitlab-runner
+#+kubebuilder:scaffold:watch

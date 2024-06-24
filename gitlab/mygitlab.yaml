@@ -1,0 +1,17 @@
+apiVersion: apps.gitlab.com/v1beta1
+kind: GitLab
+metadata:
+  name: gitlab
+spec:
+  replicaCount: 2
+  chart:
+    version: "8.1.0" # https://gitlab.com/gitlab-org/cloud-native/gitlab-operator/-/blob/<OPERATOR_VERSION>/CHART_VERSIONS
+    values:
+      global:
+        hosts:
+          domain: test-gitlab.local # use a real domain here
+        ingress:
+          configureCertmanager: true
+      certmanager-issuer:
+        email: patrick.difa@gmail.com # use your real email address here
+

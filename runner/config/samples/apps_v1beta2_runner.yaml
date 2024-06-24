@@ -1,0 +1,126 @@
+apiVersion: apps.gitlab.com/v1beta2
+kind: Runner
+metadata:
+  name: runner-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/gitlab-runner/values.yaml
+  affinity: {}
+  checkInterval: 3
+  concurrent: 10
+  configMaps: {}
+  deploymentAnnotations: {}
+  deploymentLabels: {}
+  deploymentLifecycle: {}
+  extraEnv: {}
+  extraEnvFrom: {}
+  extraObjects: []
+  hostAliases:
+  - ip: "192.168.1.154"
+    hostnames:
+    - "gitlab.test.local"
+  image:
+    image: gitlab-org/gitlab-runner
+    registry: registry.gitlab.com
+  imagePullPolicy: IfNotPresent
+  gitlabUrl: "https://gitlab.test.local"
+  runnerRegistrationToken: "glrt-uy7J39q5DLuR_Xzcgzjm"
+  unregisterRunners: true
+  metrics:
+    enabled: false
+    port: 9252
+    portName: metrics
+    serviceMonitor:
+      enabled: false
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext:
+    fsGroup: 65533
+    runAsUser: 100
+  priorityClassName: ""
+  rbac:
+    clusterWideAccess: false
+    create: false
+    generatedServiceAccountName: ""
+    imagePullSecrets: []
+    podSecurityPolicy:
+      enabled: false
+      resourceNames:
+      - gitlab-runner
+    rules: []
+    serviceAccountAnnotations: {}
+  resources: {}
+  runners:
+    cache: {}
+    config: |
+      [session_server]
+        session_timeout = 1800
+      [[runners]]
+        name = "gitlab-runner-test"
+        url = "https://gitlab.com"
+        id = 38659274
+        token = "glrt-dE28onWfj5m2MdRMypPg"
+        executor = "kubernetes"
+        [runners.custom_build_dir]
+        [runners.cache]
+          MaxUploadedArchiveSize = 0
+          [runners.cache.s3]
+          [runners.cache.gcs]
+          [runners.cache.azure]
+        [runners.kubernetes]
+          host = ""
+          bearer_token_overwrite_allowed = false
+          image = ""
+          namespace = ""
+          namespace_overwrite_allowed = ""
+          namespace_per_job = false
+          node_selector_overwrite_allowed = ""
+          node_tolerations_overwrite_allowed = ""
+          pod_labels_overwrite_allowed = ""
+          service_account_overwrite_allowed = ""
+          pod_annotations_overwrite_allowed = ""
+          [runners.kubernetes.init_permissions_container_security_context]
+            [runners.kubernetes.init_permissions_container_security_context.capabilities]
+          [runners.kubernetes.build_container_security_context]
+            [runners.kubernetes.build_container_security_context.capabilities]
+          [runners.kubernetes.helper_container_security_context]
+            [runners.kubernetes.helper_container_security_context.capabilities]
+          [runners.kubernetes.service_container_security_context]
+            [runners.kubernetes.service_container_security_context.capabilities]
+          [runners.kubernetes.volumes]
+          [runners.kubernetes.dns_config]
+    configPath: ""
+  secrets: []
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    privileged: false
+    readOnlyRootFilesystem: false
+    runAsNonRoot: true
+  service:
+    enabled: false
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    imagePullSecrets: []
+    name: ""
+  sessionServer:
+    enabled: false
+  shutdown_timeout: 0
+  strategy: {}
+  terminationGracePeriodSeconds: 3600
+  tolerations: []
+  topologySpreadConstraints: {}
+  useTini: false
+  volumeMounts:
+          - mountPath: "/etc/ssl/certs/"
+            name: gitlab-cert
+            readOnly: true
+  volumes: []
+  volumes:
+        - name: gitlab-cert
+          secret:
+            secretName: gitlab-cert
+  
