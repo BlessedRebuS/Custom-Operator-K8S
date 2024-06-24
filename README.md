@@ -70,9 +70,9 @@ Per questa parte del progetto ho scelto di creare un operatore basato su Gitlab 
 ```bash
 mkdir runner
 cd runner
-operator-sdk init --plugins=helm --domain=gitlab.com --group=apps --version=v1beta1 --kind=GitLab --helm-chart=gitlab/gitlab-operator
+operator-sdk init --plugins=helm --domain=gitlab.com --group=apps --version=v1beta1 --kind=GitLab --helm-chart=gitlab/gitlab-runner
 make install
-export IMG=docker.io/blessedrebus/gitlab-operator:v0.0.1
+export IMG=docker.io/blessedrebus/gitlab-runner:v0.0.1
 make docker-build docker-push IMG=$IMG
 make deploy IMG=$IMG
 ```
