@@ -21,6 +21,10 @@ Creare la entry nel file /etc/host del cluster e della macchina da cui si vuole 
 
 echo "192.168.1.155	gitlab.test.local" >> /etc/hosts
 
+Alla fine l'istanza GitLab apparirà così
+
+![image info](img/gitlab-instance)
+
 Si dovrà poi aggiungere l' host sfruttando il DNS del cluster direttamente nella definizione della risorsa Runner
 
 ```yaml
@@ -208,5 +212,6 @@ Infine si applica la CRD con
 k apply -f crd.yaml -n gitlab-system
 ```
 
+![image info](img/running-operator)
 
 
