@@ -10,7 +10,6 @@ Le risorse su Proxmox si presentano nel seguente modo
 
 ![image info](img/proxmox.png)
 
-
 ## Installare il classico gitlab operator
 
 ```bash
@@ -223,6 +222,12 @@ Infine si applica la CRD con
 ```bash
 k apply -f crd.yaml -n gitlab-system
 ```
+
+Una volta installato l'operatore nuovo le risorse si presenteranno così
+
+![image info](img/runner-operator.png)
+
+Sull'istanza GitLab apparirà nel seguente modo
 
 ![image info](img/running-operator.png)
 
