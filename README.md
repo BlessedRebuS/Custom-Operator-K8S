@@ -4,6 +4,7 @@ In questa repository si implementa un custom gitlab runner operator configurato 
 ## Installare il classico gitlab operator
 
 ```bash
+mkdir gitlab
 cd gitlab
 helm install gitlab-operator gitlab/gitlab-operator --create-namespace --namespace gitlab-system
 ```
@@ -45,6 +46,7 @@ kubectl create secret generic gitlab-cert -n runner-system --from-file=gitlab.cr
 ## Customizzare il runner tramite operator-sdk
 
 ```bash
+mkdir runner
 cd runner
 operator-sdk init --plugins=helm --domain=gitlab.com --group=apps --version=v1beta1 --kind=GitLab --helm-chart=gitlab/gitlab-operator
 make install
