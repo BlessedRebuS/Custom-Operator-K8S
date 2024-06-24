@@ -25,6 +25,8 @@ Alla fine l'istanza GitLab apparirà così
 
 ![image info](img/gitlab-instance.png)
 
+Da qua è possibile creare nuove repository e pipeline.
+
 Si dovrà poi aggiungere l' host sfruttando il DNS del cluster direttamente nella definizione della risorsa Runner
 
 ```yaml
