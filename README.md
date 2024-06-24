@@ -1,6 +1,16 @@
 # custom-operator
 In questa repository si implementa un custom gitlab runner operator configurato per fare il runner di una istanza gitlab che gira anche essa riconciliata da un operator.
 
+## Installazione del cluster
+Il deploy è avvenuto su **Proxmox**, utilizzando **telmate/proxmox** come provider per fare il deploy di una VM dentro l'istanza Proxmox. Come cluster **Kubernetes** è stata usato **K3S** in configurazione con un **master** e un **worker**.
+
+![image info](img/nodes.png)
+
+Le risorse su Proxmox si presentano nel seguente modo
+
+![image info](img/proxmox.png)
+
+
 ## Installare il classico gitlab operator
 
 ```bash
