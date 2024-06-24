@@ -12,10 +12,26 @@ helm install gitlab-operator gitlab/gitlab-operator --create-namespace --namespa
 kubectl get services -n gitlab-system 
 ```
 
+Creare la entry nel file /etc/host del cluster e della macchina da cui si vuole raggiungere l'istanza
+
+echo "192.168.1.155	gitlab.test.local" >> /etc/hosts
+
+Si dovrà poi aggiungere l' host sfruttando il DNS del cluster direttamente nella definizione della risorsa Runner
+
+```yaml
+hostAliases:
+  - ip: "192.168.1.155"
+    hostnames:
+    - "gitlab.test.local"
+```
+
+In questo modo il runner conoscerà **gitlab.test.local** e considererà i suoi certificati come validi
+
 ![image info](img/services.png)
 
 ```bash
 openssl s_client -showcerts -connect test-gitlab.local:443 </dev/null 2>/dev/null|openssl x509 -outform PEM > gitlab.crt
+
 openssl x509 -in gitlab.crt -text -noout
 ```
 
