@@ -1,4 +1,4 @@
-# custom-operator
+# Custom K8S Gitlab Runner Operator
 In questa repository si implementa un custom gitlab runner operator configurato per fare il runner di una istanza gitlab che gira anche essa riconciliata da un operator.
 
 ## Installazione del cluster
