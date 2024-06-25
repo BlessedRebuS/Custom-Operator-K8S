@@ -32,7 +32,7 @@ echo "192.168.1.155	gitlab.test.local" >> /etc/hosts
 
 Alla fine l'istanza GitLab apparirà così
 
-![image info](img/gitlab-instance.png)
+![image info](img/gitlab-instance-repo.png)
 
 Da qua è possibile creare nuove repository e pipeline.
 
