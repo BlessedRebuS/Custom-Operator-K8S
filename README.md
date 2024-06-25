@@ -166,10 +166,6 @@ spec:
       [session_server]
         session_timeout = 1800
       [[runners]]
-        name = "gitlab-runner-test"
-        url = "https://gitlab.com"
-        id = 38659274
-        token = "glrt-dE28onWfj5m2MdRMypPg"
         executor = "kubernetes"
         [runners.custom_build_dir]
         [runners.cache]
