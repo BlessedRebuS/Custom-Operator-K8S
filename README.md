@@ -88,6 +88,24 @@ make docker-build docker-push IMG=$IMG
 make deploy IMG=$IMG
 ```
 
+Make deploy avrà questo output
+```bash
+cd config/manager && /home/k3s/Challenge/custom-operator/runner/bin/kustomize edit set image controller=controller:latest
+/home/k3s/Challenge/custom-operator/runner/bin/kustomize build config/default | kubectl apply -f -
+namespace/runner-system unchanged
+customresourcedefinition.apiextensions.k8s.io/runners.apps.gitlab.com unchanged
+serviceaccount/runner-controller-manager unchanged
+role.rbac.authorization.k8s.io/runner-leader-election-role unchanged
+clusterrole.rbac.authorization.k8s.io/runner-manager-role unchanged
+clusterrole.rbac.authorization.k8s.io/runner-metrics-reader unchanged
+clusterrole.rbac.authorization.k8s.io/runner-proxy-role unchanged
+rolebinding.rbac.authorization.k8s.io/runner-leader-election-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/runner-manager-rolebinding unchanged
+clusterrolebinding.rbac.authorization.k8s.io/runner-proxy-rolebinding unchanged
+service/runner-controller-manager-metrics-service unchanged
+deployment.apps/runner-controller-manager configured
+```
+
 La risorsa runner sarà presentata come segue
 
 ```yaml
